@@ -9,11 +9,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Print current workspace
+    - name: Install dependencies
       run: |
         sudo apt update
         sh $GITHUB_WORKSPACE/platforms/ubuntu/18.04/apt_install_dependency.sh
-    - name: Print mono status
+    - name: Print mono version
       run: mono --version
+    - name: Configure CMAKE
+      run: sh $GITHUB_WORKSPACE/platforms/ubuntu/18.04/cmake_configure.sh
+    - name: Build EmguCV
+      run: make
+    - name: Print bin folder contents
+      run: |
+        cd $GITHUB_WORKSPACE/bin
+        ls -l
+    - name: Run the examples
+      run: |
+        cd $GITHUB_WORKSPACE/bin
+        export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
+        mono Example.PlanarSubdivision.monoexe
+
+
