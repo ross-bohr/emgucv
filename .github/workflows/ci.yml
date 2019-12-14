@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Print VTK folder contents
       run: |
+        git submodule update --init --recursive
         cd $GITHUB_WORKSPACE/vtk
         ls -l
     - name: Install dependencies
