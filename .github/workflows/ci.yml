@@ -13,7 +13,7 @@ jobs:
       run: echo Hello, world!
     - name: Print current workspace
       run: |
-        echo $GITHUB_WORKSPACE
+        sudo apt update
         sh $GITHUB_WORKSPACE/platforms/ubuntu/18.04/apt_install_dependency.sh
     - name: Print mono status
       run: mono --version
