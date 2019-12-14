@@ -20,7 +20,9 @@ jobs:
     - name: Configure CMAKE
       run: sh $GITHUB_WORKSPACE/platforms/ubuntu/18.04/cmake_configure.sh
     - name: Build EmguCV
-      run: make
+      run: |
+        cd $GITHUB_WORKSPACE/bin
+        make
     - name: Print bin folder contents
       run: |
         cd $GITHUB_WORKSPACE/bin
