@@ -9,7 +9,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Print VTK folder contents
+      run: |
+        cd $GITHUB_WORKSPACE/vtk
+        ls -l
     - name: Install dependencies
+      if: contains('disabled', 'true')
       run: |
         sudo apt update
         sh $GITHUB_WORKSPACE/platforms/ubuntu/18.04/apt_install_dependency.sh
